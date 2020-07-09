@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -36,8 +38,19 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+# Main
+
+welcome_quote = """--Welcome to The Castle Of Treasures! You are in the outside room,
+--to find your way to the treasure room,
+--you can move around the castle by typing
+--'up', 'down', 'right', 'left'
+-- and 'quit' to exit game."""
 
 # Make a new player object that is currently in the 'outside' room.
+
+player_name = input("Enter Your Name:")
+player1 = Player(player_name, room['outside'])
+print(player1)
 
 # Write a loop that:
 #
@@ -49,3 +62,48 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+commands = ['up', 'down', 'right', 'left', 'quit',
+            'get_item', 'drop_item', 'my_inventory']
+
+selection = ['y']
+
+running = True
+
+print(welcome_quote)
+
+while running:
+    user_input = input(f"please enter a command{commands}")
+    # answer = input(f"Would you like to start your adventure?:{selection}")
+
+    # if answer.lower().strip() == 'y':
+    if user_input.lower().strip() == 'up':
+        player1.cardinal_dir(user_input)
+        print(f'---Welcome to {player1.current_room}')
+
+    elif user_input.lower().strip() == 'down':
+        player1.cardinal_dir(user_input)
+        print(f'---Welcome to {player1.current_room}')
+
+    elif user_input.lower().strip() == 'left':
+        player1.cardinal_dir(user_input)
+        print(f'---Welcome to {player1.current_room}')
+
+    elif user_input.lower().strip() == 'right':
+        player1.cardinal_dir(user_input)
+        print(f'---Welcome to {player1.current_room}')
+
+    elif user_input.lower().strip() == 'get_item':
+        print('hello 3')
+
+    elif user_input.lower().strip() == 'drop_item':
+        print('hello 2')
+
+    elif user_input.lower().strip() == 'inventory':
+        print('Hello 1')
+
+    elif user_input.lower().strip() == 'quit':
+        print('----The game will now quit----')
+        running = False
+    else:
+        print('Incorrect input, Please try again!')
